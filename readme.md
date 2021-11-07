@@ -1,3 +1,117 @@
+# Knuts kabal (Knut's solitaire)
+
+This is a solitaire card game that is solvable only if you're extremely lucky. My father-in-law Knut taught me this. He learned it while he was in the army, and never managed to solve it in his lifetime. Because of this, it is the only solitaire I ever play (physically). I have managed to solve it 2 times in 25 years!
+
+TODO: explain the rules
+
+I want to make this as a react app
+
+# features to implement
+
+first pri
+
+    - Board (table) with room for piles, deck, options
+    - 7 piles on each line
+    - vertical scroll if too many lines
+    - deck at the bottom right
+    - click a card: visualize legal moves
+    - click the selected card: turn off selection
+    - click a card that is not a legal move: select the card
+    - click a legal move: update piles
+    - use simple unicode characters + font + color for card graphics
+        https://www.unicode.org/emoji/charts/full-emoji-list.html
+        &#x2660; for spades / spar
+        &#x2663; for clubs / kløver
+        &#x2665; for hearts / hjerter
+        &#x2666; for diamond / ruter
+        &#x1f3b4; for backside of card
+
+second pri
+
+    - pile must know how many cards it has, to visualize the stack size
+
+improvements
+
+    - card gfx as svg
+    - only serve a deck that is solvable
+    - all cards visible on screen at all times
+        determine grid based on the number of piles
+    - visualize moving piles with transitions
+    - visualize no more legal moves
+    - visualize solved game
+    - options button
+    - restart game (keeping the same deck)
+    - shuffle deck (restart)
+    - turn on/off visualizing legal moves
+    - cheat mode: highlight correct moves
+
+# Defining components, props, state, events
+
+I haven't finished the first tutorial yet, but I think I have figured out the basics. I'm not going to plan everything before I start, but components and props could be useful to decide on. And maybe events
+
+## Board
+
+**description**  
+Has space for the piles of cards. Has a deck of available cards. Has an options button for selecting different things.
+
+**props**  
+
+**state**  
+- Array of piles. Each pile has a size and info about the top card. A pile also has a selected state (unselected, selected, marked as legal move)
+- Array of cards currently in the deck.
+
+**events**  
+- Handle click on each pile and determine what is the correct response based on game state.
+- Handle click on deck, placing a card on the board.
+- Handle click on options.
+
+## Pile
+
+**description**  
+Represents one pile of cards currently on the board. The size of the pile is visualized, to get an impression of how well we're doing in the game. Large piles near the end is always good.
+
+**props**  
+- Size of pile
+- Visual card (face + value)
+
+**state**  
+- selected state (not selected, selected or marked as legal move)
+
+**events**  
+- onclick handled by Board
+
+## Deck
+
+**description**  
+The cards currently available. This is a pile with all cards facing down.
+
+**props**  
+- size of pile
+
+**state**  
+**events**  
+- onclick handled by Board
+
+# Process
+
+I will implement the game in the following order. This list will be updated to reflect the actual process
+
+    - set up react project
+    - create + render basic components
+    - create some css
+    - add node-sass
+
+# Questions about React
+
+    if a state change triggers render, how can a component transition from one css value to another?
+
+    How to use sass and my svg mixin?
+    https://create-react-app.dev/docs/adding-a-sass-stylesheet/
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
