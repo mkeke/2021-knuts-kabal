@@ -1,0 +1,100 @@
+@use "sass:math";
+@import 'svg';
+
+* {
+    /* clear default margins and paddings*/
+    margin: 0; padding: 0;
+
+    /* remove highlight color when tapping on a link */
+    -webkit-tap-highlight-color: transparent;
+
+    /* disable text magnifier pop-up on click and hold (iPhone) */
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;
+
+    /* disable outline when tabbing through UI elements */
+    outline: none;
+}
+
+ul {
+    /* disable bullets in lists */
+    list-style: none;
+}
+
+li {
+    /* avoid vertical space between cells when cells are small */
+//    font-size: 1px;
+}
+
+html, body { 
+    height: 100%;
+
+    /* disable chrome browser pull-down-to-refresh */
+    overflow-y: hidden;
+
+    background-color: #222;
+}
+
+$col: #ff6600;
+
+.game {
+    padding: 20px;
+
+    .board {
+        background-color: $col;
+        width: 100%;
+        height: auto;
+
+        $svg: (
+            '<path fill="red" stroke="black" stroke-width="5" d="M10,10 L80,30 L40,70 Z" />'
+        );
+        @include svg($svg, 0, 0, 100, 100);
+
+
+    }
+}
+
+.cards {
+    li {
+        display: inline-block;
+        vertical-align: top;
+        width: percentage(1/7);
+        height: 0;
+        padding-bottom: 20%;
+        box-sizing: border-box;
+        border: 1px dashed white;
+        background-color: #00000050;
+    }
+}
+.foo {
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+    height: 0;
+    padding-bottom: 33%;
+    box-sizing: border-box;
+    border: 1px dashed white;
+    transition: background-color 1s linear;
+    background-color: magenta;
+    &.f0 {
+        background-color: red;
+    }
+    &.f1 {
+        background-color: green;
+    }
+    &.f2 {
+        background-color: yellow;
+    }
+    &.f3 {
+        background-color: cyan;
+    }
+    &.f4 {
+        background-color: lightblue;
+    }
+    &.f5 {
+        background-color: salmon;
+    }
+    &.clicked {
+        background-color: #ffffff77;
+    }
+}

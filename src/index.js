@@ -1,17 +1,114 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './sass/index.scss';
+
+class Card extends React.Component {
+    render() {
+        return(
+            <li
+                className={`${this.props.item.suit} r${this.props.item.rank}`}
+            >
+                {this.props.item.suit} {this.props.item.rank}
+            </li>
+        );
+    }    
+}
+
+class Board extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            cards: this.createCards(),
+        };
+        // console.log(this.state);
+    }
+
+    createCards() {
+        const cards = [];
+        const suits = ["spades","clubs","hearts","diamonds"];
+
+        // build deck of cards
+        for(const suit of suits) {
+            for(let i=1; i<=13; i++) {
+                cards.push({
+                    suit: suit,
+                    rank: i,
+                    face: Math.random() < 0.5, //true, // false,
+                    pile: 0,
+                    visible: true,
+                });
+            }
+        }
+
+        // shuffle cards
+        for (let i = cards.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [cards[i], cards[j]] = [cards[j], cards[i]];
+        }
+
+        return cards;
+    }
+
+    handleTileClick(i) {
+        console.log("clicked " + i);
+
+        // update state for the current tile
+
+        /*
+        const state = this.state.foo.slice();
+        state[i] = "clicked";
+        this.setState({
+            foo: state
+        });
+        */
+    }
+
+    renderCard(item) {
+        // each list imtem should also have a key
+        return(
+            <Card key={item.suit + "-" + item.rank} item={item} />
+        );
+    }
+
+    render() {
+        // get visible cards facing up
+        const piles = this.state.cards.filter( item => item.face && item.visible );
+
+        // get visible cards facing down
+        const deck = this.state.cards.filter( item => !item.face && item.visible );
+        // TODO render the first one. get pile size
+
+        return(
+            <div className="board">
+                <ul className="cards">
+                {
+                    piles.map(item => this.renderCard(item))
+                }
+                </ul>
+                <ul className="deck">
+                {
+                    deck.map(item => this.renderCard(item))
+                }
+                </ul>
+            </div>
+        );
+    }
+
+}
+
+class Game extends React.Component {
+    render() {
+        return(
+            <div className="game">
+                <Board />
+            </div>
+        );
+    }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Game />,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

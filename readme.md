@@ -23,7 +23,7 @@ first pri
         &#x2660; for spades / spar
         &#x2663; for clubs / kløver
         &#x2665; for hearts / hjerter
-        &#x2666; for diamond / ruter
+        &#x2666; for diamonds / ruter
         &#x1f3b4; for backside of card
 
 second pri
@@ -96,19 +96,49 @@ The cards currently available. This is a pile with all cards facing down.
 
 I will implement the game in the following order. This list will be updated to reflect the actual process
 
-    - set up react project
-    - create + render basic components
-    - create some css
-    - add node-sass
+    v set up react project
+    v create + render basic components
+    v create some css
+    v add node-sass
+    v sub folder for sass
+    v test render onclick
+
+    - design
+
+    - split game js into multiple files
+
+# redesign components?
+
+     ------------------------
+    |                        |
+    |  [] [] [] [] [] [] []  |
+    |                        |
+    |  [] [] [] [] [] [] []  |
+    |                        |
+    |  [] [] [] [] [] [] []  |
+    |                        |
+    |                     _  |
+    | *                  |_| |
+     ------------------------
+
+board: overlord
+card
+    suit: ""
+    rank: ""
+    face: true | false
+    pile: int
+    visible: true | false
+
+    if visible && face then flow
+    if visible && !face then deck
+
 
 # Questions about React
 
     if a state change triggers render, how can a component transition from one css value to another?
 
-    How to use sass and my svg mixin?
-    https://create-react-app.dev/docs/adding-a-sass-stylesheet/
-
-
+    App.js App.css eller index.js index.css?
+    Tutorial har index, men default er App
 
 
 
