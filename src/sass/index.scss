@@ -54,47 +54,29 @@ $col: #ff6600;
     }
 }
 
-.cards {
+.cards, .deck {
     li {
         display: inline-block;
         vertical-align: top;
+
         width: percentage(1/7);
-        height: 0;
-        padding-bottom: 20%;
+        height: auto;
+        padding: 5% 0;
+
         box-sizing: border-box;
         border: 1px dashed white;
-        background-color: #00000050;
+
+        background-color: #ffffffcc;
+        text-align: center;
     }
 }
-.foo {
-    display: inline-block;
-    vertical-align: top;
-    width: 33%;
-    height: 0;
-    padding-bottom: 33%;
-    box-sizing: border-box;
-    border: 1px dashed white;
-    transition: background-color 1s linear;
-    background-color: magenta;
-    &.f0 {
-        background-color: red;
-    }
-    &.f1 {
-        background-color: green;
-    }
-    &.f2 {
-        background-color: yellow;
-    }
-    &.f3 {
-        background-color: cyan;
-    }
-    &.f4 {
-        background-color: lightblue;
-    }
-    &.f5 {
-        background-color: salmon;
-    }
-    &.clicked {
-        background-color: #ffffff77;
-    }
+
+.spades,
+.clubs {
+    color: black;
+}
+
+.hearts,
+.diamonds {
+    color: red;
 }

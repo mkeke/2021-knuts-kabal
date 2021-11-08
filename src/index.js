@@ -3,12 +3,20 @@ import ReactDOM from 'react-dom';
 import './sass/index.scss';
 
 class Card extends React.Component {
+    getSymbol(s) {
+        return {
+            hearts: '\u2665',
+            diamonds: '\u2666',
+            clubs: '\u2663',
+            spades: '\u2660',
+        }[s];
+    }
     render() {
         return(
             <li
-                className={`${this.props.item.suit} r${this.props.item.rank}`}
-            >
-                {this.props.item.suit} {this.props.item.rank}
+                className={this.props.item.suit}
+                onClick={ ()=>this.props.onClick() }>
+                {this.getSymbol(this.props.item.suit)}<br />{this.props.item.rank}
             </li>
         );
     }    
@@ -22,7 +30,11 @@ class Board extends React.Component {
         this.state = {
             cards: this.createCards(),
         };
-        // console.log(this.state);
+
+        /*
+        this.state.cards.map(
+            e=>console.log(e.order + " " + e.suit + " " + e.rank));
+        */
     }
 
     createCards() {
@@ -35,7 +47,7 @@ class Board extends React.Component {
                 cards.push({
                     suit: suit,
                     rank: i,
-                    face: Math.random() < 0.5, //true, // false,
+                    face: true, // Math.random() < 0.5, //true, // false,
                     pile: 0,
                     visible: true,
                 });
@@ -48,14 +60,17 @@ class Board extends React.Component {
             [cards[i], cards[j]] = [cards[j], cards[i]];
         }
 
-        // TODO add sequence number as attribute 
-        this.refreshSequence();
+        // add sequence number as attribute
+        // needing the sequence for traversing the array
+        this.refreshSequence(cards);
 
         return cards;
     }
 
-    refreshSequence() {
-
+    refreshSequence(cards) {
+        for (const [i, card] of cards.entries()) {
+            card.order = i;
+        }
     }
 
     handleTileClick(i) {
@@ -74,16 +89,22 @@ class Board extends React.Component {
 
     handleCardClick(i) {
         // reference to this.state.cards[i]
+        console.log("clicked " + i);
+        console.log(this.state.cards[i]);
     }
 
-    renderCard(item) {
+    renderCard(card) {
         // TODO the param is a sequence number.
         // reference to this.state.cards[i]
         // onclick needs this number
 
         // each list item should also have a key associated with it
         return(
-            <Card key={item.suit + "-" + item.rank} item={item} />
+            <Card
+                key={card.order}
+                item={card}
+                onClick={ () => this.handleCardClick(card.order) }
+            />
         );
     }
 
