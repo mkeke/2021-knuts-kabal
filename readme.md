@@ -45,6 +45,21 @@ improvements
     - turn on/off visualizing legal moves
     - cheat mode: highlight correct moves
 
+# Defining components
+
+## Board
+
+Placeholder for the cards that are laid out. Placeholder for the deck with available cards. Placeholder for options.
+
+The board needs to keep track of the state of each card. When a card is clicked, the board updates the state based on the game rules.
+
+## Card
+
+Represents one card.
+
+
+
+
 # Defining components, props, state, events
 
 I haven't finished the first tutorial yet, but I think I have figured out the basics. I'm not going to plan everything before I start, but components and props could be useful to decide on. And maybe events
@@ -132,6 +147,11 @@ card
     if visible && face then flow
     if visible && !face then deck
 
+
+    - flow like a snake through grid layout
+    - render deck with pile size
+    - onclick
+    - stuff
 
 # Questions about React
 

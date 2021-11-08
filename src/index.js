@@ -48,7 +48,14 @@ class Board extends React.Component {
             [cards[i], cards[j]] = [cards[j], cards[i]];
         }
 
+        // TODO add sequence number as attribute 
+        this.refreshSequence();
+
         return cards;
+    }
+
+    refreshSequence() {
+
     }
 
     handleTileClick(i) {
@@ -65,8 +72,16 @@ class Board extends React.Component {
         */
     }
 
+    handleCardClick(i) {
+        // reference to this.state.cards[i]
+    }
+
     renderCard(item) {
-        // each list imtem should also have a key
+        // TODO the param is a sequence number.
+        // reference to this.state.cards[i]
+        // onclick needs this number
+
+        // each list item should also have a key associated with it
         return(
             <Card key={item.suit + "-" + item.rank} item={item} />
         );
@@ -84,11 +99,13 @@ class Board extends React.Component {
             <div className="board">
                 <ul className="cards">
                 {
+                    // TODO send sequence number
                     piles.map(item => this.renderCard(item))
                 }
                 </ul>
                 <ul className="deck">
                 {
+                    // TODO send sequence number
                     deck.map(item => this.renderCard(item))
                 }
                 </ul>
