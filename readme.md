@@ -13,6 +13,7 @@ The objective is simple: you want the cards in the deck to end up in a single pi
 
 I have used this game as a motivation to learn React.
 
+How many times in 25 years can YOU solve this game? Good luck! :-p
 
 
 # TODOs
