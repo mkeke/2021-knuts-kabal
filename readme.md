@@ -1,5 +1,8 @@
 # Knuts kabal (Knut's solitaire)
 
+**WORK IN PROGRESS**  
+https://lysebo.xyz/games/kabal/
+
 This is a solitaire card game. It is solvable only if you're extremely lucky. I have only been able to solve it 2 times in 25 years! For that reason, this is the only solitaire card game I ever play (when I occasionally play one). My late father-in-law Knut taught me the rules, hence the name Knuts kabal.
 
 The objective is simple: you want the cards in the deck to end up in a single pile. The rules are as follows:
