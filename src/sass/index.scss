@@ -44,39 +44,60 @@ $col: #ff6600;
         background-color: $col;
         width: 100%;
         height: auto;
-
+/*
         $svg: (
             '<path fill="red" stroke="black" stroke-width="5" d="M10,10 L80,30 L40,70 Z" />'
         );
         @include svg($svg, 0, 0, 100, 100);
+*/
 
 
     }
 }
 
-.cards, .deck {
-    li {
-        display: inline-block;
-        vertical-align: top;
-
-        width: percentage(1/7);
-        height: auto;
-        padding: 5% 0;
-
-        box-sizing: border-box;
-        border: 1px dashed white;
-
-        background-color: #ffffffcc;
-        text-align: center;
-    }
+.deck {
+    width: 100%;
+    text-align: right;
 }
 
-.spades,
-.clubs {
+.cards li, .deck li {
+    display: inline-block;
+    vertical-align: top;
+
+    width: percentage(1/7);
+    height: auto;
+    padding: 4% 0;
+
+    box-sizing: border-box;
+    text-align: center;
+}
+
+// card suit colors
+.spades, .clubs {
     color: black;
 }
 
-.hearts,
-.diamonds {
+.hearts, .diamonds {
     color: red;
+}
+
+// card status
+.nah {
+    border: 1px dashed white;
+    background-color: #ddd;
+}
+.sel {
+    border: 1px solid black;
+    background-color: #ccc;
+}
+.opt {
+    border: 1px solid green;
+    background-color: #88dd88;
+}
+
+// card backside
+.deck li.back {
+    background-color: green;
+    color: white;
+    border: 1px solid black;
 }

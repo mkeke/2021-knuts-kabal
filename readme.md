@@ -1,10 +1,17 @@
 # Knuts kabal (Knut's solitaire)
 
-This is a solitaire card game that is solvable only if you're extremely lucky. My father-in-law Knut taught me this. He learned it while he was in the army, and never managed to solve it in his lifetime. Because of this, it is the only solitaire I ever play (physically). I have managed to solve it 2 times in 25 years!
+This is a solitaire card game. It is solvable only if you're extremely lucky! I have managed to solve it 2 times in 25 years. Because of this, it's the only solitaire card game I ever play (when I occationally play one). My late father-in-law Knut taught me the rules, hence the name Knuts kabal.
 
-TODO: explain the rules
+The objective is simple: you want the cards to end up in a single pile. The rules are as follows:
+- Take a new card from the deck and place it face up, to the right of the other cards on the table.
+- if the new card matches the suit OR rank of the card directly to the left, you can place the new card on top of the card to the left.
+- the above rule also applies to the card 3 piles to the left of the new card.
+- Stacking a pile on top of another often opens up further possibilities in either directions. Always pick up the entire pile, and make sure the piles always travel from right to left.
 
-I want to make this as a react app
+This game was a motivation to learn React.
+
+
+
 
 # features to implement
 
@@ -232,3 +239,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
