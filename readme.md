@@ -1,171 +1,57 @@
 # Knuts kabal (Knut's solitaire)
 
-This is a solitaire card game. It is solvable only if you're extremely lucky! I have managed to solve it 2 times in 25 years. Because of this, it's the only solitaire card game I ever play (when I occationally play one). My late father-in-law Knut taught me the rules, hence the name Knuts kabal.
+This is a solitaire card game. It is solvable only if you're extremely lucky. I have only been able to solve it 2 times in 25 years! For that reason, this is the only solitaire card game I ever play (when I occasionally play one). My late father-in-law Knut taught me the rules, hence the name Knuts kabal.
 
-The objective is simple: you want the cards to end up in a single pile. The rules are as follows:
-- Take a new card from the deck and place it face up, to the right of the other cards on the table.
-- if the new card matches the suit OR rank of the card directly to the left, you can place the new card on top of the card to the left.
-- the above rule also applies to the card 3 piles to the left of the new card.
-- Stacking a pile on top of another often opens up further possibilities in either directions. Always pick up the entire pile, and make sure the piles always travel from right to left.
+The objective is simple: you want the cards in the deck to end up in a single pile. The rules are as follows:
+- Take a new card from the deck and place it face up, on the right side of any other cards on the table.
+- If this card matches the suit or rank of the card directly to the left, you can place it on top of that card.
+- Similarly, if this card matches the suit or rank of the card 3 positions to the left, you can place it on top of that card.
+- Placing a card on top of another often opens up further possibilities in either directions. Always pick up the entire pile, and make sure the piles always travel from right to left.
 
-This game was a motivation to learn React.
-
-
+I have used this game as a motivation to learn React.
 
 
-# features to implement
 
-first pri
+# TODOs
 
-    - Board (table) with room for piles, deck, options
-    - 7 piles on each line
-    - vertical scroll if too many lines
-    - deck at the bottom right
-    - click a card: visualize legal moves
-    - click the selected card: turn off selection
-    - click a card that is not a legal move: select the card
-    - click a legal move: update piles
-    - use simple unicode characters + font + color for card graphics
-        https://www.unicode.org/emoji/charts/full-emoji-list.html
-        &#x2660; for spades / spar
-        &#x2663; for clubs / kløver
-        &#x2665; for hearts / hjerter
-        &#x2666; for diamonds / ruter
-        &#x1f3b4; for backside of card
-
-second pri
-
-    - pile must know how many cards it has, to visualize the stack size
-
-improvements
-
-    - card gfx as svg
-    - only serve a deck that is solvable
-    - all cards visible on screen at all times
-        determine grid based on the number of piles
-    - visualize moving piles with transitions
-    - visualize no more legal moves
-    - visualize solved game
+    v grid layout alternating snake
+    v arrows indicating direction
+    - only generate a deck that is solvable
     - options button
-    - restart game (keeping the same deck)
-    - shuffle deck (restart)
-    - turn on/off visualizing legal moves
-    - cheat mode: highlight correct moves
+    - option: undo (history)
+    - option: toggle auto-select new card
+    - option: toggle show legal moves
+    - option: deal all cards
+    - option: new game
+    - option: toggle cheat mode: highlight correct moves
+    - visualize pile size
+    - move cards with transition
+    - visuialize no more legal moves
+    - visualize solved game
 
-# Defining components
+# implemented features
+
+Card graphics is unicode characters for suits and sans-serif for rank.
+
+7 piles on each line. The cards are distributed in alternating directions for each line. This is a personal preference when playing it with physical cards. Arrows pop up to indicate the direction.
+
+Click on the deck to place a new card. The new card is automatically selected, but only if it can be placed on top of other cards.
+
+Click on a card to select it. A selected card has a green border. Possible moves are indicated by green cards. Click a green card to move the selected card on top of the green card. Click the selected card to deselect it.
+
+# Components
+
+## Game
+
+Placeholder for Board
 
 ## Board
 
-Placeholder for the cards that are laid out. Placeholder for the deck with available cards. Placeholder for options.
-
-The board needs to keep track of the state of each card. When a card is clicked, the board updates the state based on the game rules.
+Controller component. Placeholders for rendering cards, deck, arrows. Handles user interaction. Calculates state.
 
 ## Card
 
-Represents one card.
-
-
-
-
-# Defining components, props, state, events
-
-I haven't finished the first tutorial yet, but I think I have figured out the basics. I'm not going to plan everything before I start, but components and props could be useful to decide on. And maybe events
-
-## Board
-
-**description**  
-Has space for the piles of cards. Has a deck of available cards. Has an options button for selecting different things.
-
-**props**  
-
-**state**  
-- Array of piles. Each pile has a size and info about the top card. A pile also has a selected state (unselected, selected, marked as legal move)
-- Array of cards currently in the deck.
-
-**events**  
-- Handle click on each pile and determine what is the correct response based on game state.
-- Handle click on deck, placing a card on the board.
-- Handle click on options.
-
-## Pile
-
-**description**  
-Represents one pile of cards currently on the board. The size of the pile is visualized, to get an impression of how well we're doing in the game. Large piles near the end is always good.
-
-**props**  
-- Size of pile
-- Visual card (face + value)
-
-**state**  
-- selected state (not selected, selected or marked as legal move)
-
-**events**  
-- onclick handled by Board
-
-## Deck
-
-**description**  
-The cards currently available. This is a pile with all cards facing down.
-
-**props**  
-- size of pile
-
-**state**  
-**events**  
-- onclick handled by Board
-
-# Process
-
-I will implement the game in the following order. This list will be updated to reflect the actual process
-
-    v set up react project
-    v create + render basic components
-    v create some css
-    v add node-sass
-    v sub folder for sass
-    v test render onclick
-
-    - design
-
-    - split game js into multiple files
-
-# redesign components?
-
-     ------------------------
-    |                        |
-    |  [] [] [] [] [] [] []  |
-    |                        |
-    |  [] [] [] [] [] [] []  |
-    |                        |
-    |  [] [] [] [] [] [] []  |
-    |                        |
-    |                     _  |
-    | *                  |_| |
-     ------------------------
-
-board: overlord
-card
-    suit: ""
-    rank: ""
-    face: true | false
-    pile: int
-    visible: true | false
-
-    if visible && face then flow
-    if visible && !face then deck
-
-
-    - flow like a snake through grid layout
-    - render deck with pile size
-    - onclick
-    - stuff
-
-# Questions about React
-
-    if a state change triggers render, how can a component transition from one css value to another?
-
-    App.js App.css eller index.js index.css?
-    Tutorial har index, men default er App
+A card is either rendered face down (in the deck) or face up (on the "table"). A card facing up has a visible suit and rank.
 
 
 

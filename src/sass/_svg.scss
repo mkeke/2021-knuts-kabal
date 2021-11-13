@@ -2,6 +2,7 @@
     svg($body, $vbx1, $vby1, $vbx2, $vby2, $size: 'contain', $position: 'left top')
 
         Creates an svg background image of the svg defined in $body
+        Author: Simen Lysebo
 
     usage
         $svg-body: (

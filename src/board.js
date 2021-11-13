@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './card';
+import Arrow from './arrow';
 
 export default class Board extends React.Component {
 
@@ -26,7 +27,7 @@ export default class Board extends React.Component {
                     pile: 0,    // int: [0-n] number of cards underneath the card
                     status: 0,  // int: 0=free, 1=selected, 2=option
 
-                    order: undefined, // int: [0-51] array index, to allow comparing cards
+                    sequence: undefined, // int: [0-51] array index, to allow comparing cards
 
                     // TODO remove test values
                     opacity: 1,
@@ -49,7 +50,7 @@ export default class Board extends React.Component {
 
     refreshSequence(cards) {
         for (const [i, card] of cards.entries()) {
-            card.order = i;
+            card.sequence = i;
         }
     }
 
@@ -87,16 +88,18 @@ export default class Board extends React.Component {
             // show card
             cards[i].face = true;
             // auto-select card
-            cards[i].status = 1;
-            selected = i;
 
             // visualize option to the left
             if (this.isLegalMove(i, i-1)) {
                 cards[i-1].status = 2;
+                cards[i].status = 1;
+                selected = i;
             }
             // visualize option 3 steps to the left
             if (this.isLegalMove(i, i-3)) {
                 cards[i-3].status = 2;
+                cards[i].status = 1;
+                selected = i;
             }
 
         } else {
@@ -176,7 +179,17 @@ export default class Board extends React.Component {
             <Card
                 key={card.suit+card.rank}
                 item={card}
-                onClick={ () => this.handleCardClick(card.order) }
+                onClick={ () => this.handleCardClick(card.sequence) }
+            />
+        );
+    }
+
+    renderArrow(line) {
+        console.log(line);
+        return(
+            <Arrow
+                key={line}
+                line={line}
             />
         );
     }
@@ -188,6 +201,10 @@ export default class Board extends React.Component {
         // get cards facing down
         const deck = this.state.cards.filter( item => !item.face );
 
+        // neat trick to call render n times
+        const numArrows = Math.max(0, Math.ceil(piles.length / 7) - 1);
+        const arrowArray = [...Array(numArrows)];
+
         return(
             <div className="board">
                 {piles.length > 0 &&
@@ -198,6 +215,11 @@ export default class Board extends React.Component {
                 {deck.length > 0 &&
                     <ul className="deck">
                         { this.renderCard(deck[0]) }
+                    </ul>
+                }
+                {arrowArray.length > 0 &&
+                    <ul className="arrow">
+                        { arrowArray.map((item, i) => this.renderArrow(i)) }
                     </ul>
                 }
             </div>

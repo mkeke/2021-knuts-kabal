@@ -10,23 +10,51 @@ export default class Card extends React.Component {
             nbsp: '\u00A0',
         }[s];
     }
+    getRank(r) {
+        switch(r) {
+            case 11: 
+                return "J";
+            case 12: 
+                return "Q";
+            case 13: 
+                return "K"; 
+            default:
+                return r;
+        }
+    }
+    getStatusClass(s) {
+        switch(s) {
+            case 1: 
+                return "sel";
+            case 2: 
+                return "opt";
+            default:
+                return "nah";
+        }
+    }
+    getFaceClass(f) {
+        return f ? "" : "back";
+    }
 
     render() {
         // TODO improve direct array lookup
         return(
             <li
                 style={{opacity: this.props.item.opacity}}
-                className={`${this.props.item.suit} ${["nah","sel","opt"][this.props.item.status]} ${this.props.face?"":"back"}`}
+                className={`
+                    ${this.props.item.suit} 
+                    ${this.getStatusClass(this.props.item.status)} 
+                    ${this.getFaceClass(this.props.item.face)}
+                `}
                 onClick={ ()=>this.props.onClick() }>
 
                 {this.props.item.face ? (
                     <span>
                         {this.getSymbol(this.props.item.suit)}<br />
-                        {this.props.item.rank}
+                        {this.getRank(this.props.item.rank)}
                     </span>
                 ) : (
                     <span>
-                        deck<br />
                         {this.getSymbol("nbsp")}
                     </span>
                 )}
