@@ -12,6 +12,8 @@ export default class Card extends React.Component {
     }
     getRank(r) {
         switch(r) {
+            case 1: 
+                return "A";
             case 11: 
                 return "J";
             case 12: 
