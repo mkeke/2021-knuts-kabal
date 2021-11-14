@@ -18,9 +18,12 @@ How many times in 25 years can YOU solve this game? Good luck! :-p
 
 # TODOs
 
-    v grid layout alternating snake
-    v arrows indicating direction
-    - only generate a deck that is solvable
+    v maxwidth
+    v visualize pile size
+    - deck area always visible
+    - display number of cards left in deck
+    - empty deck = visual empty deck area
+
     - options button
     - option: undo (history)
     - option: toggle auto-select new card
@@ -28,7 +31,7 @@ How many times in 25 years can YOU solve this game? Good luck! :-p
     - option: deal all cards
     - option: new game
     - option: toggle cheat mode: highlight correct moves
-    - visualize pile size
+    - only generate a deck that is solvable
     - move cards with transition
     - visuialize no more legal moves
     - visualize solved game

@@ -37,12 +37,11 @@ export default class Card extends React.Component {
     }
 
     render() {
-        // TODO improve direct array lookup
         return(
             <li
                 style={{opacity: this.props.item.opacity}}
                 className={`
-                    ${this.props.item.suit} 
+                    ${this.props.item.suit}
                     ${this.getStatusClass(this.props.item.status)} 
                     ${this.getFaceClass(this.props.item.face)}
                 `}
@@ -55,7 +54,8 @@ export default class Card extends React.Component {
                     </span>
                 ) : (
                     <span>
-                        {this.getSymbol("nbsp")}
+                        {this.getSymbol("nbsp")}<br />
+                        ({this.props.remaining})
                     </span>
                 )}
             </li>

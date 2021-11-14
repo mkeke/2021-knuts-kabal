@@ -171,7 +171,7 @@ export default class Board extends React.Component {
         */
     }
 
-    renderCard(card) {
+    renderCard(card, remaining) {
         // each list item should also have a key associated with it
         // react uses this key to create a relationship between the component
         // and the DOM element.
@@ -179,6 +179,7 @@ export default class Board extends React.Component {
             <Card
                 key={card.suit+card.rank}
                 item={card}
+                remaining={remaining}
                 onClick={ () => this.handleCardClick(card.sequence) }
             />
         );
@@ -214,7 +215,7 @@ export default class Board extends React.Component {
                 }
                 {deck.length > 0 &&
                     <ul className="deck">
-                        { this.renderCard(deck[0]) }
+                        { this.renderCard(deck[0], deck.length) }
                     </ul>
                 }
                 {arrowArray.length > 0 &&
