@@ -22,9 +22,6 @@ Yes, any deck is solvable, regardless of how it is shuffled. [solve.js](solve.js
 
 # TODOs
 
-    - deck area always visible
-    - empty deck = visual empty deck area
-
     - options button
     - option: undo (history)
     - option: toggle auto-select new card

@@ -46,6 +46,8 @@ html, body {
         height: auto;
         overflow: visible;
         position: relative;
+        footer {
+        }
     }
 }
 
@@ -80,6 +82,7 @@ html, body {
         font-size: 20px;
         font-family: sans-serif;
     }
+
 }
 
 // card suit colors
@@ -122,6 +125,12 @@ html, body {
     @include svg($svg, 0, 0, 100, 100);
     background-size: 20px 20px;
     background-repeat: repeat;
+}
+
+// empty deck
+.deck li.empty {
+    background-color: #222;
+    border: 1px solid black;
 }
 
 // cards flowing in a snake pattern downwards

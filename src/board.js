@@ -9,8 +9,76 @@ export default class Board extends React.Component {
 
         this.state = {
             cards: this.createCards(),
+            // cards: this.customCards(),
             selected: undefined,
         };
+    }
+
+    customCards() {
+        const cards = [
+            { suit: 'diamonds', rank: 11 },
+            { suit: 'clubs', rank: 8 },
+            { suit: 'hearts', rank: 8 },
+            { suit: 'spades', rank: 5 },
+            { suit: 'diamonds', rank: 5 },
+            { suit: 'spades', rank: 9 },
+            { suit: 'spades', rank: 7 },
+            { suit: 'spades', rank: 3 },
+            { suit: 'diamonds', rank: 12 },
+            { suit: 'diamonds', rank: 1 },
+            { suit: 'hearts', rank: 10 },
+            { suit: 'clubs', rank: 3 },
+            { suit: 'clubs', rank: 1 },
+            { suit: 'spades', rank: 10 },
+            { suit: 'spades', rank: 12 },
+            { suit: 'clubs', rank: 13 },
+            { suit: 'diamonds', rank: 8 },
+            { suit: 'diamonds', rank: 10 },
+            { suit: 'diamonds', rank: 6 },
+            { suit: 'clubs', rank: 11 },
+            { suit: 'clubs', rank: 6 },
+            { suit: 'diamonds', rank: 2 },
+            { suit: 'spades', rank: 4 },
+            { suit: 'diamonds', rank: 13 },
+            { suit: 'clubs', rank: 4 },
+            { suit: 'hearts', rank: 12 },
+            { suit: 'hearts', rank: 13 },
+            { suit: 'hearts', rank: 4 },
+            { suit: 'spades', rank: 8 },
+            { suit: 'hearts', rank: 7 },
+            { suit: 'hearts', rank: 2 },
+            { suit: 'hearts', rank: 5 },
+            { suit: 'hearts', rank: 11 },
+            { suit: 'clubs', rank: 7 },
+            { suit: 'hearts', rank: 3 },
+            { suit: 'spades', rank: 6 },
+            { suit: 'diamonds', rank: 9 },
+            { suit: 'spades', rank: 2 },
+            { suit: 'clubs', rank: 5 },
+            { suit: 'clubs', rank: 9 },
+            { suit: 'clubs', rank: 2 },
+            { suit: 'spades', rank: 1 },
+            { suit: 'diamonds', rank: 3 },
+            { suit: 'hearts', rank: 6 },
+            { suit: 'clubs', rank: 10 },
+            { suit: 'spades', rank: 13 },
+            { suit: 'spades', rank: 11 },
+            { suit: 'clubs', rank: 12 },
+            { suit: 'hearts', rank: 1 },
+            { suit: 'diamonds', rank: 7 },
+            { suit: 'diamonds', rank: 4 },
+            { suit: 'hearts', rank: 9 }
+        ];
+
+        this.refreshSequence(cards);
+        cards.map((el, i) => {
+            cards[i].face = true;
+            cards[i].pile = 0;
+            cards[i].status = 0;
+            return true;
+        });
+
+        return cards;
     }
 
     createCards() {
@@ -26,11 +94,7 @@ export default class Board extends React.Component {
                     face: false, // boolean: true = facing up, false = facing down
                     pile: 0,    // int: [0-n] number of cards underneath the card
                     status: 0,  // int: 0=free, 1=selected, 2=option
-
-                    sequence: undefined, // int: [0-51] array index, to allow comparing cards
-
-                    // TODO remove test values
-                    opacity: 1,
+                    sequence: undefined, // int: [0-51] array index, to allow comparing neighbor cards
                 });
             }
         }
@@ -154,26 +218,11 @@ export default class Board extends React.Component {
         }
         this.refreshSequence(cards);
         this.setState({cards:cards, selected:selected});
-
-        /*
-        // lets try to remove the card and see what happens
-        cards.splice(i, 1);
-        this.refreshSequence(cards);
-        this.setState({cards:cards});
-        // gosh! dang! it works!
-        */
-
-        /*
-        // lets set opacity and see if a transition occurs
-        cards[i].opacity = 0;
-        this.setState({cards:cards});
-        // gosh! dang! it works!
-        */
     }
 
     renderCard(card, remaining) {
-        // each list item should also have a key associated with it
-        // react uses this key to create a relationship between the component
+        // Each list item should have a key associated with it.
+        // React uses this key to create a relationship between the component
         // and the DOM element.
         return(
             <Card
@@ -186,7 +235,6 @@ export default class Board extends React.Component {
     }
 
     renderArrow(line) {
-        console.log(line);
         return(
             <Arrow
                 key={line}
@@ -213,16 +261,19 @@ export default class Board extends React.Component {
                         { piles.map(card => this.renderCard(card)) }
                     </ul>
                 }
-                {deck.length > 0 &&
-                    <ul className="deck">
-                        { this.renderCard(deck[0], deck.length) }
-                    </ul>
-                }
                 {arrowArray.length > 0 &&
                     <ul className="arrow">
                         { arrowArray.map((item, i) => this.renderArrow(i)) }
                     </ul>
                 }
+                <footer>
+                    <ul className="deck">
+                    {deck.length > 0 ? this.renderCard(deck[0], deck.length)
+                    :(
+                        <li className="empty"></li>
+                    )}
+                    </ul>
+                </footer>
             </div>
         );
     }
