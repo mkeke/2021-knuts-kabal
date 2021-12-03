@@ -22,12 +22,12 @@ Yes, any deck is solvable, regardless of how it is shuffled. [solve.js](solve.js
 
 # TODOs
 
-    - options button
+    v options button
+    v option: new game
     - option: undo (history)
     - option: toggle auto-select new card
     - option: toggle show legal moves
     - option: deal all cards
-    - option: new game
     - option: toggle cheat mode: highlight correct moves
     - move cards with transition
     - visualize no more legal moves

@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './card';
 import Arrow from './arrow';
+import Options from './options';
 
 export default class Board extends React.Component {
 
@@ -11,6 +12,7 @@ export default class Board extends React.Component {
             cards: this.createCards(),
             // cards: this.customCards(),
             selected: undefined,
+            optionsExpanded: false,
         };
     }
 
@@ -220,6 +222,21 @@ export default class Board extends React.Component {
         this.setState({cards:cards, selected:selected});
     }
 
+    handleOptionClick() {
+        // 
+        this.setState({optionsExpanded: !this.state.optionsExpanded});
+    }
+
+    handleRestart() {
+        // rebuild deck
+
+        this.setState ({
+            cards: this.createCards(),
+            selected: undefined,
+        });
+
+    }
+
     renderCard(card, remaining) {
         // Each list item should have a key associated with it.
         // React uses this key to create a relationship between the component
@@ -239,6 +256,16 @@ export default class Board extends React.Component {
             <Arrow
                 key={line}
                 line={line}
+            />
+        );
+    }
+
+    renderOptions() {
+        return(
+            <Options
+                visible={this.state.optionsExpanded}
+                onClick={ () => this.handleOptionClick() }
+                handleRestart={ () => this.handleRestart() }
             />
         );
     }
@@ -267,6 +294,7 @@ export default class Board extends React.Component {
                     </ul>
                 }
                 <footer>
+                    {this.renderOptions()}
                     <ul className="deck">
                     {deck.length > 0 ? this.renderCard(deck[0], deck.length)
                     :(
