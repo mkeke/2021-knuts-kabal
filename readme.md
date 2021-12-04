@@ -22,17 +22,9 @@ Yes, any deck is solvable, regardless of how it is shuffled. [solve.js](solve.js
 
 # TODOs
 
-    v options button
-    v option: new game
-    - option: undo (history)
-    - option: toggle auto-select new card
-    - option: toggle show legal moves
     - option: deal all cards
-    - option: toggle cheat mode: highlight correct moves
+    - option: undo (history)
     - move cards with transition
-    - visualize no more legal moves
-    - visualize solved game
-
 
 # implemented features
 
@@ -40,9 +32,11 @@ Card graphics is unicode characters for suits and sans-serif for rank.
 
 7 piles on each line. The cards are distributed in alternating directions for each line. This is a personal preference when playing it with physical cards. Arrows pop up to indicate the direction.
 
-Click on the deck to place a new card. The new card is automatically selected, but only if it can be placed on top of other cards.
+Click on the deck to place a new card. If hints are enabled, the new card is automatically selected, but only if it can be placed on top of other cards.
 
-Click on a card to select it. A selected card has a green border. Possible moves are indicated by green cards. Click a green card to move the selected card on top of the green card. Click the selected card to deselect it.
+Click on a card to select it. A selected card has a green border. Possible moves are indicated by green cards if hints are enabled. Click a green card to move the selected card on top of the green card. Click the selected card to deselect it.
+
+Click on the restart icon to restart the game.
 
 # Components
 
@@ -58,3 +52,7 @@ Controller component. Placeholders for rendering cards, deck, arrows. Handles us
 
 A card is either rendered face down (in the deck) or face up (on the "table"). A card facing up has a visible suit and rank.
 
+## Options
+
+Section that can be shown or hidden. Contains icons to restart, toggle hints
+and a link to the Github repo.
