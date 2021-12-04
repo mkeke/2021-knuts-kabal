@@ -25,11 +25,14 @@ export default class Card extends React.Component {
         }
     }
     getStatusClass(s) {
+        // only visualize status 2 if hints are activated
+        // TODO: so sorry about this crappy switch. refactor!
+        // TODO: change status codes from int to descriptive
         switch(s) {
             case 1: 
                 return "sel";
             case 2: 
-                return "opt";
+                return this.props.showHint?"opt":"nah";
             default:
                 return "nah";
         }

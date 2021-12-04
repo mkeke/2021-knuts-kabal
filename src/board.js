@@ -13,6 +13,7 @@ export default class Board extends React.Component {
             // cards: this.customCards(),
             selected: undefined,
             optionsExpanded: false,
+            showHint: false,
         };
     }
 
@@ -155,17 +156,20 @@ export default class Board extends React.Component {
             cards[i].face = true;
             // auto-select card
 
-            // visualize option to the left
-            if (this.isLegalMove(i, i-1)) {
-                cards[i-1].status = 2;
-                cards[i].status = 1;
-                selected = i;
-            }
-            // visualize option 3 steps to the left
-            if (this.isLegalMove(i, i-3)) {
-                cards[i-3].status = 2;
-                cards[i].status = 1;
-                selected = i;
+            // if hints activated
+            if(this.state.showHint) {
+                // set active card and flag option to the left
+                if (this.isLegalMove(i, i-1)) {
+                    cards[i-1].status = 2;
+                    cards[i].status = 1;
+                    selected = i;
+                }
+                // set active card and flag option 3 steps to the left
+                if (this.isLegalMove(i, i-3)) {
+                    cards[i-3].status = 2;
+                    cards[i].status = 1;
+                    selected = i;
+                }
             }
 
         } else {
@@ -181,11 +185,11 @@ export default class Board extends React.Component {
                 cards[i].status = 1;
                 selected = i;
 
-                // visualize option to the left
+                // flag option to the left (not necessarily visualized)
                 if (this.isLegalMove(i, i-1)) {
                     cards[i-1].status = 2;
                 }
-                // visualize option 3 steps to the left
+                // flag option 3 steps to the left (not necessarily visualized)
                 if (this.isLegalMove(i, i-3)) {
                     cards[i-3].status = 2;
                 }
@@ -237,6 +241,12 @@ export default class Board extends React.Component {
 
     }
 
+    toggleHint() {
+        this.setState({
+            showHint: !this.state.showHint
+        });
+    }
+
     renderCard(card, remaining) {
         // Each list item should have a key associated with it.
         // React uses this key to create a relationship between the component
@@ -247,6 +257,7 @@ export default class Board extends React.Component {
                 item={card}
                 remaining={remaining}
                 onClick={ () => this.handleCardClick(card.sequence) }
+                showHint={this.state.showHint}
             />
         );
     }
@@ -266,6 +277,8 @@ export default class Board extends React.Component {
                 visible={this.state.optionsExpanded}
                 onClick={ () => this.handleOptionClick() }
                 handleRestart={ () => this.handleRestart() }
+                showHint={this.state.showHint}
+                toggleHint={ () => this.toggleHint() }
             />
         );
     }
@@ -282,6 +295,7 @@ export default class Board extends React.Component {
         const arrowArray = [...Array(numArrows)];
 
         return(
+            <>
             <div className="board">
                 {piles.length > 0 &&
                     <ul className="cards">
@@ -303,6 +317,8 @@ export default class Board extends React.Component {
                     </ul>
                 </footer>
             </div>
+            <div className="test"></div>
+            </>
         );
     }
 }

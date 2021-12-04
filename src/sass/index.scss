@@ -295,6 +295,7 @@ nav {
             vertical-align: top;
             width: 30px;
             height: 30px;
+            margin-left: 5px;
 
             box-sizing: border-box;
             button {
@@ -304,11 +305,10 @@ nav {
                 border: none;
                 background-color: transparent;
                 &.active, &:hover {
-                    background-color: #ffffff30;
+                    background-color: #555;
                 }
             }
         }
-
     }
 }
 
@@ -322,11 +322,27 @@ nav {
     misc option buttons
 */
 .options {
-
     .restart {
         $svg: (
             '<g stroke="none" fill="#dddddd" transform="rotate(45 50 50)" >'
-            '<path d="M50,15 v -10 l 15,15 l -15,15 v -10 A 25,25 0 1 0 75,50 h10 A 35,35 0 1 1 50,15 Z" />'
+            '<path d="M50,15 v -15 l 20,20 l -20,20 v -15 A 25,25 0 1 0 75,50 h10 A 35,35 0 1 1 50,15 Z" />'
+            '</g>'
+        );
+        @include svg($svg, 0, 0, 100, 100);
+    }
+
+    .hint {
+        $svg: (
+            '<g fill="none" stroke="#dddddd" stroke-width="3">'
+            '<path d="M20,30 l -5,-8" />'
+            '<path d="M35,25 l -3,-10" />'
+            '<path d="M50,23 v-10" />'
+            '<path d="M65,25 l 3,-10" />'
+            '<path d="M80,30 l 5,-8" />'
+            '<path d="M2,44 c 25,-27 71,-27 96,0" />'
+            '<path d="M10,51 c 15,-27 65,-27 80,0" />'
+            '<circle fill="#dddddd" cx="50" cy="50" r="8.5" />'
+            '<path d="M10,49 c 15,27 65,27 80,0" />'
             '</g>'
         );
         @include svg($svg, 0, 0, 100, 100);
@@ -343,3 +359,24 @@ nav {
         @include svg($svg, -2, -2, 20, 20);
     }
 }
+/*
+.test {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    $svg: (
+            '<g fill="none" stroke="#dddddd" stroke-width="3">'
+            '<path d="M20,30 l -5,-8" />'
+            '<path d="M35,25 l -3,-10" />'
+            '<path d="M50,23 v-10" />'
+            '<path d="M65,25 l 3,-10" />'
+            '<path d="M80,30 l 5,-8" />'
+            '<path d="M2,44 c 25,-27 71,-27 96,0" />'
+            '<path d="M10,51 c 15,-27 65,-27 80,0" />'
+            '<circle fill="#dddddd" cx="50" cy="50" r="8.5" />'
+            '<path d="M10,49 c 15,27 65,27 80,0" />'
+            '</g>'
+    );
+    @include svg($svg, 0, 0, 100, 100);
+}
+*/
