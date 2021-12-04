@@ -322,6 +322,14 @@ nav {
     misc option buttons
 */
 .options {
+    .undo {
+        $svg: (
+            '<g fill="#dddddd" stroke="none">'
+            '<path d="M10,50 l30,-30 v20 h50 v20 h-50 v20 z" />'
+            '</g>'
+        );
+        @include svg($svg, 0, 0, 100, 100);
+    }
     .restart {
         $svg: (
             '<g stroke="none" fill="#dddddd" transform="rotate(45 50 50)" >'
@@ -390,23 +398,10 @@ nav {
     background-color: red;
     $svg: (
             '<g fill="#dddddd" stroke="none">'
-            '<rect x="10" y="10" width="10" height="20" />'
-            '<rect x="27.5" y="10" width="10" height="20" />'
-            '<rect x="45" y="10" width="10" height="20" />'
-            '<rect x="62.5" y="10" width="10" height="20" />'
-            '<rect x="80" y="10" width="10" height="20" />'
-            '<rect x="10" y="40" width="10" height="20" />'
-            '<rect x="27.5" y="40" width="10" height="20" />'
-            '<rect x="45" y="40" width="10" height="20" />'
-            '<rect x="62.5" y="40" width="10" height="20" />'
-            '<rect x="80" y="40" width="10" height="20" />'
-            '<rect x="10" y="70" width="10" height="20" />'
-            '<rect x="27.5" y="70" width="10" height="20" />'
-            '<rect x="45" y="70" width="10" height="20" />'
-            '<rect x="62.5" y="70" width="10" height="20" />'
-            '<rect x="80" y="70" width="10" height="20" />'
+            '<path d="M10,50 l30,-30 v20 h50 v20 h-50 v20 z" />'
             '</g>'
     );
     @include svg($svg, 0, 0, 100, 100);
 }
+
 */

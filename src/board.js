@@ -14,9 +14,10 @@ export default class Board extends React.Component {
             cards: this.createCards(dealAll),
             // cards: this.customCards(),
             selected: undefined,
-            optionsExpanded: false,
+            optionsExpanded: true,
             showHint: false,
             dealAll: dealAll,
+            history: [],
         };
     }
 
@@ -136,24 +137,34 @@ export default class Board extends React.Component {
     handleCardClick(i) {
 
         const cards = this.state.cards.slice();
+        const history = this.state.history;
         let selected = this.state.selected;
-
-        /*
-        console.log(cards.length + " cards in deck");
-        console.log("clicked index " + i);
-        console.log(cards[i]);
-        */
 
         // TODO use constants instead of 0 1 2
 
         if (!cards[i].face) {
             // card is facing down
 
+
             // clear status on cards
             cards.map((card,index) => {
                 cards[index].status = 0;
                 return true;
             });
+
+            // made in a hurry
+            // TODO find a proper way of doing this. cards[i] is troublesome
+            // need to mutate all attributes in each card
+            history.push(
+                cards.map(el => ({
+                    suit: el.suit,
+                    rank: el.rank,
+                    face: el.face,
+                    pile: el.pile,
+                    status: el.status,
+                    sequence: el.sequence,
+                }))
+            );
 
             // show card
             cards[i].face = true;
@@ -216,6 +227,19 @@ export default class Board extends React.Component {
                     return true;
                 });
 
+                // TODO find a proper way of doing this. cards[i] is troublesome
+                // need to mutate all attributes in each card
+                history.push(
+                    cards.map(el => ({
+                        suit: el.suit,
+                        rank: el.rank,
+                        face: el.face,
+                        pile: el.pile,
+                        status: el.status,
+                        sequence: el.sequence,
+                    }))
+                );
+
                 // update card suit + rank in new position
                 cards[i].suit = cards[selected].suit;
                 cards[i].rank = cards[selected].rank;
@@ -223,10 +247,11 @@ export default class Board extends React.Component {
 
                 // remove selected card position
                 cards.splice(selected, 1);
+
+                this.refreshSequence(cards);
             }
         }
-        this.refreshSequence(cards);
-        this.setState({cards:cards, selected:selected});
+        this.setState({cards:cards, selected:selected, history: history});
     }
 
     handleOptionClick() {
@@ -264,6 +289,15 @@ export default class Board extends React.Component {
         });
     }
 
+    handleUndo() {
+        const history = this.state.history.slice();
+
+        if(history.length > 0) {
+            const cards = history.pop();
+            this.setState({history: history, cards: cards});
+        }
+    }
+
     renderCard(card, remaining) {
         // Each list item should have a key associated with it.
         // React uses this key to create a relationship between the component
@@ -298,6 +332,7 @@ export default class Board extends React.Component {
                 toggleHint={ () => this.toggleHint() }
                 dealAll={this.state.dealAll}
                 toggleDealAll={ () => this.toggleDealAll() }
+                handleUndo={ () => this.handleUndo() }
             />
         );
     }

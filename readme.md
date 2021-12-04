@@ -22,7 +22,7 @@ Yes, any deck is solvable, regardless of how it is shuffled. [solve.js](solve.js
 
 # TODOs
 
-    - option: undo (history)
+    - lots of refactoring, improving and learning
     - move cards with transition
 
 # implemented features
@@ -35,7 +35,7 @@ Click on the deck to place a new card. If hints are enabled, the new card is aut
 
 Click on a card to select it. A selected card has a green border. Possible moves are indicated by green cards if hints are enabled. Click a green card to move the selected card on top of the green card. Click the selected card to deselect it.
 
-Click on the restart icon to restart the game.
+Click on the restart icon to start the game.
 
 # Components
 
@@ -54,5 +54,5 @@ A card is either rendered face down (in the deck) or face up (on the "table"). A
 ## Options
 
 Section that can be shown or hidden.  
-Contains icons to restart, toggle hints, deal all cards
-and a link to the Github repo.
+Contains icons to undo last move, toggle hints, deal all cards, start a new game.
+And a link to the Github repo.
