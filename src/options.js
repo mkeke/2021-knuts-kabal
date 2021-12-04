@@ -12,6 +12,10 @@ export default class Options extends React.Component {
                             className={"hint" + (this.props.showHint?" active":"")}
                             onClick={ () => this.props.toggleHint() }
                         ></button></li>
+                    <li><button 
+                            className={"deal-all" + (this.props.dealAll?" active":"")}
+                            onClick={ () => this.props.toggleDealAll() }
+                        ></button></li>
                     <li><a rel="noreferrer" className="github" href="https://github.com/mkeke/2021-knuts-kabal" target="_blank"> </a></li>
                 </ul>
             </nav>        

@@ -8,12 +8,15 @@ export default class Board extends React.Component {
     constructor(props) {
         super(props);
 
+        const dealAll = false;
+
         this.state = {
-            cards: this.createCards(),
+            cards: this.createCards(dealAll),
             // cards: this.customCards(),
             selected: undefined,
             optionsExpanded: false,
             showHint: false,
+            dealAll: dealAll,
         };
     }
 
@@ -84,7 +87,7 @@ export default class Board extends React.Component {
         return cards;
     }
 
-    createCards() {
+    createCards(dealAll = this.state.dealAll) {
         const cards = [];
         const suits = ["spades","clubs","hearts","diamonds"];
 
@@ -94,7 +97,7 @@ export default class Board extends React.Component {
                 cards.push({
                     suit: suit, // string: [spades|clubs|hearts|diamonds]
                     rank: i,    // int: [1-13]
-                    face: false, // boolean: true = facing up, false = facing down
+                    face: dealAll, // boolean: true = facing up, false = facing down
                     pile: 0,    // int: [0-n] number of cards underneath the card
                     status: 0,  // int: 0=free, 1=selected, 2=option
                     sequence: undefined, // int: [0-51] array index, to allow comparing neighbor cards
@@ -233,7 +236,6 @@ export default class Board extends React.Component {
 
     handleRestart() {
         // rebuild deck
-
         this.setState ({
             cards: this.createCards(),
             selected: undefined,
@@ -244,6 +246,21 @@ export default class Board extends React.Component {
     toggleHint() {
         this.setState({
             showHint: !this.state.showHint
+        });
+    }
+
+    toggleDealAll() {
+        const cards = this.state.cards.slice();
+        if (!this.state.dealAll) {
+            // make all cards face up
+            cards.map(c => {
+                c.face = true;
+                return c;
+            });
+        }
+        this.setState({
+            dealAll: !this.state.dealAll,
+            cards: cards
         });
     }
 
@@ -279,6 +296,8 @@ export default class Board extends React.Component {
                 handleRestart={ () => this.handleRestart() }
                 showHint={this.state.showHint}
                 toggleHint={ () => this.toggleHint() }
+                dealAll={this.state.dealAll}
+                toggleDealAll={ () => this.toggleDealAll() }
             />
         );
     }

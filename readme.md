@@ -22,7 +22,6 @@ Yes, any deck is solvable, regardless of how it is shuffled. [solve.js](solve.js
 
 # TODOs
 
-    - option: deal all cards
     - option: undo (history)
     - move cards with transition
 
@@ -54,5 +53,6 @@ A card is either rendered face down (in the deck) or face up (on the "table"). A
 
 ## Options
 
-Section that can be shown or hidden. Contains icons to restart, toggle hints
+Section that can be shown or hidden.  
+Contains icons to restart, toggle hints, deal all cards
 and a link to the Github repo.
